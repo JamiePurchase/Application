@@ -1,6 +1,7 @@
 package audio;
 
 import app.Engine;
+import debug.Console;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -34,7 +35,7 @@ public class AudioPlayer
 		try
 		{
 			InputStream in = new FileInputStream(Engine.getResourcePath() + "audio/" + s);
-                        System.out.println(Engine.getResourcePath() + "audio/" + s);
+                        Console.print(Engine.getResourcePath() + "audio/" + s);
                         InputStream bin = new BufferedInputStream(in);
 			AudioInputStream ais =
 				AudioSystem.getAudioInputStream(bin);

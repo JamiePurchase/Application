@@ -28,6 +28,11 @@ public class FileService
         return false;
     }
     
+    private static String getBreak()
+    {
+        return System.getProperty("line.separator");
+    }
+    
     public static String getExtension(File file)
     {
         if(file.getName().lastIndexOf(".") != -1 && file.getName().lastIndexOf(".") != 0)
@@ -40,11 +45,6 @@ public class FileService
     public static String getFileName(File file)
     {
         return file.getName().substring(0, file.getName().length() - 7);
-    }
-    
-    private static String getBreak()
-    {
-        return System.getProperty("line.separator");
     }
     
     public static ArrayList<File> getFolder(String path, String ext)

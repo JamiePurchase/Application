@@ -5,6 +5,13 @@ import java.util.Random;
 public class Maths
 {
     
+    public static int difference(int a, int b)
+    {
+        int result = a - b;
+        if(result < 0) {result = 0 - result;}
+        return result;
+    }
+    
     public static float percent(int current, int maximum)
     {
         return (current / maximum) * 100;

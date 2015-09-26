@@ -1,5 +1,6 @@
 package app;
 
+import debug.Console;
 import input.Mouse;
 import input.Keyboard;
 import java.awt.Canvas;
@@ -8,13 +9,14 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import tools.BooleanTools;
 
 public class Display
 {
-    private JFrame frame;
+    private static JFrame frame;
     private JPanel panel;
     private static Canvas canvas;
-    private boolean fullscreen, resize;
+    private boolean fullscreen, resize, decorated;
     private int width, height;
     private String icon;
     private Keyboard keyboard;
@@ -23,6 +25,7 @@ public class Display
     public Display()
     {
         this.fullscreen = true;
+        this.decorated = false;
         this.width = 1366;
         this.height = 768;
         this.resize = false;
@@ -33,9 +36,10 @@ public class Display
         this.panel.requestFocus();
     }
     
-    public Display(int width, int height, boolean resize, String icon)
+    public Display(int width, int height, boolean resize, String icon, boolean decorated)
     {
         this.fullscreen = false;
+        this.decorated = decorated;
         this.width = width;
         this.height = height;
         this.resize = resize;
@@ -52,7 +56,7 @@ public class Display
         frame = new JFrame(Engine.getAppName());
         frame.setSize(this.width, this.height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setUndecorated(this.fullscreen);
+        frame.setUndecorated(BooleanTools.flip(this.decorated));
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setResizable(this.resize);
         if(this.fullscreen) {frame.setLocationRelativeTo(null);}
@@ -87,6 +91,11 @@ public class Display
         frame.add(canvas);
         frame.pack();
     }
+    
+    public static void frameMove(int moveX, int moveY)
+    {
+        frame.setLocation(frame.getLocationOnScreen().x + moveX, frame.getLocationOnScreen().y + moveY);
+    }
 
     public static Canvas getCanvas()
     {
@@ -96,6 +105,22 @@ public class Display
     public JPanel getPanel()
     {
         return panel;
+    }
+    
+    public void setDisplaySize(int sizeX, int sizeY)
+    {
+        // Update Values
+        this.width = sizeX;
+        this.height = sizeY;
+        
+        // Resize Frame
+        frame.setSize(this.width, this.height);
+        frame.setLocation(0, 0);
+        
+        // Resize Canvas
+        canvas.setPreferredSize(new Dimension(this.width, this.height));
+        canvas.setMaximumSize(new Dimension(this.width, this.height));
+        canvas.setMinimumSize(new Dimension(this.width, this.height));
     }
 
 }

@@ -3,11 +3,19 @@ package network;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
 public class NetworkService
 {
+    
+    public static ArrayList<String> request(String url)
+    {
+        try {return request(new URL(url));}
+        catch (MalformedURLException ex) {System.out.println(ex);}
+        return null;
+    }
     
     public static ArrayList<String> request(URL url)
     {

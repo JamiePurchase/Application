@@ -29,6 +29,7 @@ public class Keyboard implements KeyListener
         
         // Alphabetical Keys
         if(e.getKeyCode() == KeyEvent.VK_A) {return "A";}
+        if(e.getKeyCode() == KeyEvent.VK_B) {return "B";}
         if(e.getKeyCode() == KeyEvent.VK_D) {return "D";}
         if(e.getKeyCode() == KeyEvent.VK_S) {return "S";}
         if(e.getKeyCode() == KeyEvent.VK_W) {return "W";}
@@ -59,9 +60,9 @@ public class Keyboard implements KeyListener
     @Override
     public void keyTyped(KeyEvent e)
     {
-        /*System.out.println("INPUT KEYBOARD -> KEY TYPED (" + e + ")");
-        System.out.println("   getKeyName = " + this.getKeyName(e));
-        System.out.println("   e.getKeyCode = " + e.getKeyCode());*/
+        /*Console.print("INPUT KEYBOARD -> KEY TYPED (" + e + ")");
+        Console.print("   getKeyName = " + this.getKeyName(e));
+        Console.print("   e.getKeyCode = " + e.getKeyCode());*/
         //
         this.eventNew = true;
         if(this.getKeyName(e) != null) {Engine.getState().inputKey(this.getKeyName(e), "TYPE");}

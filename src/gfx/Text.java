@@ -49,8 +49,13 @@ public class Text
 
     public static void write(Graphics g, String write, int posX, int posY, String align, String font, String colour)
     {
-        g.setFont(Fonts.getFont(font));
-        g.setColor(Colour.getColour(colour));
+        write(g, write, posX, posY, align, Fonts.getFont(font), Colour.getColour(colour));
+    }
+
+    public static void write(Graphics g, String write, int posX, int posY, String align, Font font, Color color)
+    {
+        g.setFont(font);
+        g.setColor(color);
         write(g, write, posX, posY, align);
     }
     
@@ -74,13 +79,25 @@ public class Text
     
     public static void writeShadow(Graphics g, String write, int posX, int posY, String align, Color shadow)
     {
+        writeShadow(g, write, posX, posY, 1, align, shadow);
+    }
+    
+    public static void writeShadow(Graphics g, String write, int posX, int posY, int posZ, String align, Color shadow)
+    {
         if(align == "CENTER") {posX = posX - (getTextWidth(g, write) / 2);}
         if(align == "RIGHT") {posX = posX - getTextWidth(g, write);}
         Color rgb = g.getColor();
         g.setColor(shadow);
-        g.drawString(write, posX + 1, posY + 1);
+        for(int z = 1; z <= posZ; z ++) {g.drawString(write, posX + z, posY + z);}
         g.setColor(rgb);
         g.drawString(write, posX, posY);
+    }
+    
+    public static void writeShadow(Graphics g, String write, int posX, int posY, int posZ, String align, Font font, Color text, Color shadow)
+    {
+        g.setFont(font);
+        g.setColor(text);
+        writeShadow(g, write, posX, posY, posZ, align, shadow);
     }
     
 }

@@ -19,10 +19,15 @@ public class AudioManager
 		initMusic();
 		initSounds();
 	}
+        
+        public void addMusic(String path, String ref)
+        {
+            AudioPlayer.load(path, ref);
+        }
 	
 	public void changeMusic(String music)
 	{
-		if(musicActive){stopMusic();}
+		if(musicActive) {stopMusic();}
 		playMusic(music);
 	}
 	
@@ -43,7 +48,7 @@ public class AudioManager
 	
 	public void initMusic()
 	{
-                AudioPlayer.load("music/theme1.wav", "MUSIC1");
+                //AudioPlayer.load("music/theme1.wav", "MUSIC1");
 		/*AudioPlayer.load("music/theme1.wav", "music1");
 		AudioPlayer.load("music/battle1.wav", "battle1");
 		AudioPlayer.load("music/battle2.wav", "battle2");

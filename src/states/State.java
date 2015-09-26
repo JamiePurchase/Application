@@ -13,7 +13,7 @@ public abstract class State
     public void inputKey(String key, String action)
     {
         // Debug
-        //System.out.println("STATE (SUPERCLASS) -> INPUT KEY (" + key + ", " + action + ")");
+        //Console.print("STATE (SUPERCLASS) -> INPUT KEY (" + key + ", " + action + ")");
         
         if(action.equals("PRESS")) {this.inputKeyPress(key);}
         if(action.equals("PRESS_DONE")) {this.inputKeyRelease(key);}
